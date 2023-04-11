@@ -1,27 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    private bool _isLeftMousePressed;
-    //check user input
+    //variable to store targetDestinatio
+    public static Vector3 _targetDestination;
 
-    //cast a ray at mouse position
-    // check if we hit a cube
-    //cheng the color the object we hit.
-
-    private void Update()
+    private void Start()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            _isLeftMousePressed = true;
-        }
+        _targetDestination = transform.position;
     }
 
-    private void FixedUpdate()
+    void Update()
     {
-        
+        //move towards target destination
+        _targetDestination.y = 1f;
+       transform.position = Vector3.MoveTowards(transform.position, _targetDestination, 5 * Time.deltaTime);
     }
 }
